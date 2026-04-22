@@ -1,0 +1,54 @@
+services:
+  php82:
+    build:
+      context: .
+      args:
+        PHP_VERSION: "8.2"
+    volumes:
+      - .:/app
+      - vendor82:/app/vendor
+    working_dir: /app
+    entrypoint: ["sh", "-c", "composer install --no-interaction && vendor/bin/phpunit"]
+    profiles: ["php82"]
+
+  php83:
+    build:
+      context: .
+      args:
+        PHP_VERSION: "8.3"
+    volumes:
+      - .:/app
+      - vendor83:/app/vendor
+    working_dir: /app
+    entrypoint: ["sh", "-c", "composer install --no-interaction && vendor/bin/phpunit"]
+    profiles: ["php83"]
+
+  php84:
+    build:
+      context: .
+      args:
+        PHP_VERSION: "8.4"
+    volumes:
+      - .:/app
+      - vendor84:/app/vendor
+    working_dir: /app
+    entrypoint: ["sh", "-c", "composer install --no-interaction && vendor/bin/phpunit"]
+    profiles: ["php84"]
+
+  php85:
+    build:
+      context: .
+      args:
+        PHP_VERSION: "8.5"
+    volumes:
+      - .:/app
+      - vendor85:/app/vendor
+    working_dir: /app
+    entrypoint: ["sh", "-c", "composer install --no-interaction && vendor/bin/phpunit"]
+    profiles: ["php85"]
+
+volumes:
+  vendor82:
+  vendor83:
+  vendor84:
+  vendor85:
