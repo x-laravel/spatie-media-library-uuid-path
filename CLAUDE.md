@@ -20,7 +20,7 @@ A Laravel package providing a UUID-based path generator for spatie/laravel-media
 |------|----------------|
 | `UuidPathGenerator.php` | Implements `PathGenerator`. Derives a 4-level shard path from the UUID and appends `conversions/` or `responsive-images/` subdirectories as needed. Throws `RuntimeException` if `uuid` is null. |
 | `UuidFileRemover.php` | Extends `DefaultFileRemover`. After the parent deletes the UUID directory, walks up the 4 shard levels and removes each one if it is empty (`allFiles()` returns empty). Handles separate `conversions_disk`. |
-| `Commands/CleanOrphanedUuidDirectoriesCommand.php` | `php artisan media-library:clean-uuid` — lists all directories on the configured disk, filters by UUID regex, deletes ones whose UUID is absent from the `media` table, then cleans up empty shard parents. Supports `--dry-run` and `--force`. |
+| `Commands/CleanOrphanedUuidDirectoriesCommand.php` | `php artisan media:clean-uuid` — lists all directories on the configured disk, filters by UUID regex, deletes ones whose UUID is absent from the `media` table, then cleans up empty shard parents. Supports `--dry-run` and `--force`. |
 | `MediaLibraryUuidPathServiceProvider.php` | Registers `CleanOrphanedUuidDirectoriesCommand`. |
 
 ## Why a custom FileRemover?

@@ -58,7 +58,7 @@ class CleanOrphanedUuidDirectoriesCommandTest extends TestCase
 
         $this->mockRepository([]);
 
-        $this->artisan('media-library:clean-uuid')
+        $this->artisan('media:clean-uuid')
             ->expectsOutput("Orphaned UUID directory `55/0e/84/00/{$orphanedUuid}` has been removed")
             ->expectsOutput('All done!')
             ->assertSuccessful();
@@ -73,7 +73,7 @@ class CleanOrphanedUuidDirectoriesCommandTest extends TestCase
 
         $this->mockRepository([$existingUuid]);
 
-        $this->artisan('media-library:clean-uuid')
+        $this->artisan('media:clean-uuid')
             ->expectsOutput('No orphaned UUID directories found.')
             ->assertSuccessful();
 
@@ -87,7 +87,7 @@ class CleanOrphanedUuidDirectoriesCommandTest extends TestCase
 
         $this->mockRepository([]);
 
-        $this->artisan('media-library:clean-uuid', ['--dry-run' => true])
+        $this->artisan('media:clean-uuid', ['--dry-run' => true])
             ->expectsOutput("Orphaned UUID directory `55/0e/84/00/{$orphanedUuid}` found")
             ->assertSuccessful();
 
@@ -101,7 +101,7 @@ class CleanOrphanedUuidDirectoriesCommandTest extends TestCase
 
         $this->mockRepository([]);
 
-        $this->artisan('media-library:clean-uuid')->assertSuccessful();
+        $this->artisan('media:clean-uuid')->assertSuccessful();
 
         $this->assertFalse(Storage::disk($this->disk)->directoryExists('55/0e/84/00'));
         $this->assertFalse(Storage::disk($this->disk)->directoryExists('55/0e/84'));
@@ -113,7 +113,7 @@ class CleanOrphanedUuidDirectoriesCommandTest extends TestCase
     {
         $this->mockRepository([]);
 
-        $this->artisan('media-library:clean-uuid')
+        $this->artisan('media:clean-uuid')
             ->expectsOutput('No orphaned UUID directories found.')
             ->assertSuccessful();
     }

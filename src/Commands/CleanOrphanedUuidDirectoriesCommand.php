@@ -12,7 +12,7 @@ class CleanOrphanedUuidDirectoriesCommand extends Command
 {
     use ConfirmableTrait;
 
-    protected $signature = 'media-library:clean-uuid
+    protected $signature = 'media:clean-uuid
         {disk? : The disk to clean}
         {--dry-run : List directories that will be removed without removing them}
         {--force : Force the operation to run when in production}';

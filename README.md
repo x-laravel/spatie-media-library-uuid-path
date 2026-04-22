@@ -80,7 +80,7 @@ In `config/media-library.php`:
 spatie's built-in `media-library:clean` command identifies orphaned directories using an `is_numeric()` check, which only works for the default ID-based path structure. This package ships a UUID-aware replacement:
 
 ```bash
-php artisan media-library:clean-uuid
+php artisan media:clean-uuid
 ```
 
 Options:
