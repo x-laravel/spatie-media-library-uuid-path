@@ -4,6 +4,7 @@ namespace XLaravel\SpatieMediaLibraryUuidPath;
 
 use Illuminate\Support\ServiceProvider;
 use XLaravel\SpatieMediaLibraryUuidPath\Commands\CleanOrphanedUuidDirectoriesCommand;
+use XLaravel\SpatieMediaLibraryUuidPath\Commands\MigrateToUuidPathCommand;
 
 class MediaLibraryUuidPathServiceProvider extends ServiceProvider
 {
@@ -12,6 +13,7 @@ class MediaLibraryUuidPathServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 CleanOrphanedUuidDirectoriesCommand::class,
+                MigrateToUuidPathCommand::class,
             ]);
         }
     }

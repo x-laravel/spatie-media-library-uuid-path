@@ -75,6 +75,33 @@ In `config/media-library.php`:
 > **Why `UuidFileRemover`?**
 > The default file remover deletes the UUID directory but leaves the empty shard parent directories (`55/0e/84/00/`) behind. `UuidFileRemover` cascades upward and removes each shard level when it becomes empty.
 
+## Migrating from DefaultPathGenerator
+
+If your project already has media files stored with spatie's default ID-based structure (`1/photo.jpg`, `2/photo.jpg`), you can migrate them to the UUID path structure without any downtime:
+
+**1.** While your config still points to `DefaultPathGenerator`, run:
+
+```bash
+php artisan media:migrate-to-uuid
+```
+
+**2.** Once it completes, switch the config to this package:
+
+```php
+'path_generator' => \XLaravel\SpatieMediaLibraryUuidPath\UuidPathGenerator::class,
+'file_remover_class' => \XLaravel\SpatieMediaLibraryUuidPath\UuidFileRemover::class,
+```
+
+The command moves all files (including conversions and responsive images), deletes the old ID directories, and is safe to re-run — it skips media whose old directory no longer exists.
+
+Options:
+
+| Option | Description |
+|---|---|
+| `disk` | Disk to migrate (defaults to `media-library.disk_name` config) |
+| `--dry-run` | Preview what would be moved without touching any files |
+| `--force` | Skip the production confirmation prompt |
+
 ## Cleaning Orphaned Directories
 
 spatie's built-in `media-library:clean` command identifies orphaned directories using an `is_numeric()` check, which only works for the default ID-based path structure. This package ships a UUID-aware replacement:
